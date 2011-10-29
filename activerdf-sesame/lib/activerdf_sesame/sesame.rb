@@ -86,6 +86,8 @@ module ActiveRDF
         init_rdbms_store(params)
       when 'http'
         init_http_store(params)
+      when 'owlim-se'
+        init_owlimse_store(params)
       else
         raise(ArgumentError, "Unknown backend type for Sesame: #{backend}")
       end
@@ -319,6 +321,10 @@ module ActiveRDF
       wrap = @myWrapperInstance.initWithHttp(params[:url], params[:user], params[:pass])
       @writes = wrap.getRepository.isWritable
       wrap
+    end
+    
+    def init_owlimse_store(params)      
+      @myWrapperInstance.initWithBigOWLIM(params[:location], params[:ruleset] || 'owl-horst')
     end
 
     # check if testee is a java subclass of reference
