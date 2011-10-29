@@ -158,21 +158,21 @@ module ActiveRDF
       begin 
         case name
         when :rdflite
-          require 'activerdf_rdflite/rdflite'
-          require 'activerdf_rdflite/fetching'
-          require 'activerdf_rdflite/suggesting'
+          require 'activerdf-rdflite/lib/activerdf_rdflite/rdflite'
+          require 'activerdf-rdflite/lib/activerdf_rdflite/fetching'
+          require 'activerdf-rdflite/lib/activerdf_rdflite/suggesting'
         when :fetching
-          require 'activerdf_rdflite/fetching'
+          require 'activerdf-rdflite/lib/activerdf_rdflite/fetching'
         when :redland
-          require 'activerdf_redland/redland'
+          require 'activerdf-redland/lib/activerdf_redland/redland'
         when :sparql
-          require 'activerdf_sparql/sparql'
+          require 'activerdf-sparql/lib/activerdf_sparql/sparql'
         when :jars
-          require 'activerdf_yars/jars2'
+          require 'activerdf-yars/lib/activerdf_yars/jars2'
         when :jena
-          require 'activerdf_jena/jena'
+          require 'activerdf-jena/lib/activerdf_jena/jena'
         when :sesame
-          require 'activerdf_sesame/sesame'
+          require 'activerdf-sesame/lib/activerdf_sesame/sesame'
         else
           # raise error if adapter type unknown
           ActiveRdfLogger::log_error "Unknown adapter #{name}"
