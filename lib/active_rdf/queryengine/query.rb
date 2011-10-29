@@ -12,6 +12,8 @@ module ActiveRDF
 
     # Creates a new query. You may pass a different class that is used for "resource"
     # type objects instead of RDFS::Resource
+
+    attr_accessor :resource_class
     def initialize(resource_type = RDFS::Resource)
       @distinct = false
       @select_clauses = []
@@ -24,7 +26,7 @@ module ActiveRDF
       @reasoning = nil
       @all_types = false
       @nil_clause_idx = -1
-    set_resource_class(resource_type)
+      @resource_class = resource_type
     end
 
     def initialize_copy(orig)
