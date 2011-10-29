@@ -19,6 +19,7 @@ import org.openrdf.repository.RepositoryException;
 import org.openrdf.model.Resource;
 import org.openrdf.rio.RDFFormat;
 
+import com.ontotext.trree.OwlimSchemaRepository; 
 
 /**
 	* construct a wrapper for a sesame2 repository.
@@ -102,6 +103,37 @@ public class WrapperForSesame2 {
 		sesameConnection = sesameRepository.getConnection();
 		return sesameConnection;
 	}
+
+
+	/*
+	 * Initialize the Wrapper with a BigOWLIM as a backend
+	 * @param boolean inferencing If true (and not null), it will activate rdfs inferencing
+	 */
+	public RepositoryConnection initWithOWLIMSE(String dir, String ruleset) {
+
+      OwlimSchemaRepository schema = new OwlimSchemaRepository();
+      
+      // set the data folder where BigOWLIM will persist its data 
+      //schema.setDataDir(new File("./local-sotrage"));
+      
+      // configure BigOWLIM with some parameters 
+      schema.setParameter("storage-folder", dir); 
+      schema.setParameter("repository-type", "file-repository"); 
+      schema.setParameter("ruleset", ruleset);
+      
+      // wrap it into a Sesame SailRepository 
+      sesameRepository = new SailRepository(schema);
+
+      // initialize 
+      try{
+        sesameRepository.initialize(); 
+        sesameConnection = sesameRepository.getConnection();
+      }
+      catch (Exception e){}
+      
+		  return sesameConnection;
+	}
+
 
 	/**
 		* @return the sesame connection of the sesame repository associated with this wrapper.

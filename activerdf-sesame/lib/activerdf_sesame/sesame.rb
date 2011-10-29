@@ -324,7 +324,7 @@ module ActiveRDF
     end
     
     def init_owlimse_store(params)      
-      @myWrapperInstance.initWithBigOWLIM(params[:location], params[:ruleset] || 'owl-horst')
+      @myWrapperInstance.initWithOWLIMSE(params[:location], params[:ruleset] || 'owl-horst')
     end
 
     # check if testee is a java subclass of reference

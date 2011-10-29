@@ -33,10 +33,17 @@
 	" />
 	
 	<fileset id="all-libs" dir="lib">
-    	<include name="openrdf-*.jar"/>
-    	<include name="junit-*.jar"/>
+ 		<include name="openrdf-*.jar"/>
+    <include name="junit-*.jar"/>
 		<include name="slf4j-*.jar"/>
 		<include name="commons-*.jar"/>
+		<include name="owlim-*.jar"/>
+		<include name="onto-crypto-*.jar"/>
+		<include name="jsi-*.jar"/>
+		<include name="lubm-*.jar"/>
+		<include name="lucene-core-*.jar"/>
+		<include name="sil-*.jar"/>
+		<include name="trove4j-*.jar"/>
 	</fileset>
 
 	<fileset id="export-libs" dir="lib">
