@@ -46,21 +46,21 @@ ActiveRdfLogger::log_info "ActiveRDF loaded, logging level: #{ActiveRdfLogger::l
 #end
 
 ### Uncomment this block if you wish to preload adapters
-# if ENV['ACTIVE_RDF_ADAPTERS'].nil?
-#   if RUBY_PLATFORM =~ /java/
-#     ActiveRDF::ConnectionPool.load_adapter(:jena)
-#     ActiveRDF::ConnectionPool.load_adapter(:sparql)
-#     ActiveRDF::ConnectionPool.load_adapter(:sesame)
-#   else
-#     ActiveRDF::ConnectionPool.load_adapter(:rdflite)
-#     ActiveRDF::ConnectionPool.load_adapter(:redland)
-#     ActiveRDF::ConnectionPool.load_adapter(:sparql)
-#   end
-# else
-#   # load specified adapters
-#   # for example: ENV['ACTIVE_RDF_ADAPTERS'] = "redland,sparql"
-#   ENV['ACTIVE_RDF_ADAPTERS'].split(",").uniq.each do |adapter|
-#     ActiveRDF::ConnectionPool.load_adapter(adapter)
-#   end
-# end
+if ENV['ACTIVE_RDF_ADAPTERS'].nil?
+  if RUBY_PLATFORM =~ /java/
+    ActiveRDF::ConnectionPool.load_adapter(:jena)
+    ActiveRDF::ConnectionPool.load_adapter(:sparql)
+    ActiveRDF::ConnectionPool.load_adapter(:sesame)
+  else
+    ActiveRDF::ConnectionPool.load_adapter(:rdflite)
+    ActiveRDF::ConnectionPool.load_adapter(:redland)
+    ActiveRDF::ConnectionPool.load_adapter(:sparql)
+  end
+else
+  # load specified adapters
+  # for example: ENV['ACTIVE_RDF_ADAPTERS'] = "redland,sparql"
+  ENV['ACTIVE_RDF_ADAPTERS'].split(",").uniq.each do |adapter|
+    ActiveRDF::ConnectionPool.load_adapter(adapter)
+  end
+end
 
