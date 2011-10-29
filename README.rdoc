@@ -38,7 +38,7 @@ people found in the data source:
 <b>To use ActiveRDF with OWLIM-SE store, you must ask for the OWLIM-SE >= 4.1 at http://www.ontotext.com/owlim.</b>
 
 After get OWLIM-SE files, execute the procedure below:
-1. Extract OWLIM-SE files on yout local computer;
+1. Extract OWLIM-SE files at your local computer;
 2. Copy the content of 'lib' and 'ext' directories (from OWLIM-SE) to activerdf-sesame/ext;
 3. Run rake install again.
 
