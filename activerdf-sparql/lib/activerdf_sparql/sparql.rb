@@ -2,7 +2,7 @@ require 'open-uri'
 require 'cgi'
 require 'rexml/document'
 require 'active_rdf/queryengine/query2sparql'
-require 'activerdf_sparql/sparql_result_parser'
+require "#{File.dirname(__FILE__)}/sparql_result_parser"
 
 module ActiveRDF
   # SPARQL adapter
