@@ -35,7 +35,7 @@ people found in the data source:
 
  ActiveRDF::ConnectionPool.add_data_source :type => :sesame, :location => 'path/to/store/dir', :backend => 'owlim-se', :ruleset => 'owl-horst'
 
-<b>To use ActiveRDF with OWLIM-SE store, you must ask for the OWLIM-SE >= 4.1 at http://www.ontotext.com/owlim.</b>
+<b>To use ActiveRDF with OWLIM-SE store, you must get OWLIM-SE >= 4.1 at http://www.ontotext.com/owlim.</b>
 
 After get OWLIM-SE files, execute the procedure below:
 1. Extract OWLIM-SE files at your local computer;
