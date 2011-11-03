@@ -156,23 +156,24 @@ module ActiveRDF
     def ConnectionPool.load_adapter(name)
       name = name.to_s.strip.downcase.to_sym
       begin 
+        this_dir = File.dirname(File.expand_path(__FILE__))
         case name
         when :rdflite
-          require 'activerdf-rdflite/lib/activerdf_rdflite/rdflite'
-          require 'activerdf-rdflite/lib/activerdf_rdflite/fetching'
-          require 'activerdf-rdflite/lib/activerdf_rdflite/suggesting'
+          require this_dir + '/../../../activerdf-rdflite/lib/activerdf_rdflite/rdflite'
+          require this_dir + '/../../../activerdf-rdflite/lib/activerdf_rdflite/fetching'
+          require this_dir + '/../../../activerdf-rdflite/lib/activerdf_rdflite/suggesting'
         when :fetching
-          require 'activerdf-rdflite/lib/activerdf_rdflite/fetching'
+          require this_dir + '/../../../activerdf-rdflite/lib/activerdf_rdflite/fetching'
         when :redland
-          require 'activerdf-redland/lib/activerdf_redland/redland'
+          require this_dir + '/../../../activerdf-redland/lib/activerdf_redland/redland'
         when :sparql
-          require 'activerdf-sparql/lib/activerdf_sparql/sparql'
+          require this_dir + '/../../../activerdf-sparql/lib/activerdf_sparql/sparql'
         when :jars
-          require 'activerdf-yars/lib/activerdf_yars/jars2'
+          require this_dir + '/../../../activerdf-yars/lib/activerdf_yars/jars2'
         when :jena
-          require 'activerdf-jena/lib/activerdf_jena/jena'
+          require this_dir + '/../../../activerdf-jena/lib/activerdf_jena/jena'
         when :sesame
-          require 'activerdf-sesame/lib/activerdf_sesame/sesame'
+          require this_dir + '/../../../activerdf-sesame/lib/activerdf_sesame/sesame'
         else
           # raise error if adapter type unknown
           ActiveRdfLogger::log_error "Unknown adapter #{name}"
