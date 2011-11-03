@@ -7,22 +7,43 @@ etc. programmatically, without queries.
 
 See http://www.activerdf.org for more information.
 
-== Getting Started
+== Installing
 
-See http://wiki.activerdf.org/GettingStartedGuide for information on how to
-install ActiveRDF, point to data sources, and use it. In brief: "gem install
-activerdf_sparql".
+ $ rake install
+
+<em>To use ActiveRDF with Sesame or Jena, you must use it with JRuby. </em>
+To install ActiveRDF on JRuby, use the command below:
+ $ jruby -S rake install
 
 == Simple Example
 
 The following example uses a SPARQL endpoint with FOAF data and displays all 
 people found in the data source:
 
- require 'activerdf'
- ConnectionPool.add_data_source :type => :sparql, :host => '...'
- Namespace.register :foaf, 'http://xmlns.com/foaf/0.1/'
- ObjectManager.construct_classes
+ require 'rubygems'
+ require 'active_rdf'
+ ActiveRDF::ConnectionPool.add_data_source :type => :sparql, :host => '...'
+ ActiveRDF::Namespace.register :foaf, 'http://xmlns.com/foaf/0.1/'
+ ActiveRDF::ObjectManager.construct_classes
  people = FOAF::Person.find_all
+
+== Sesame native store example
+
+ ActiveRDF::ConnectionPool.add_data_source :type => :sesame, :location => 'path/to/store/dir', :inferencing => true
+
+== OWLIM-SE store example
+
+ ActiveRDF::ConnectionPool.add_data_source :type => :sesame, :location => 'path/to/store/dir', :backend => 'owlim-se', :ruleset => 'owl-horst'
+
+<b>To use ActiveRDF with OWLIM-SE store, you must get OWLIM-SE >= 4.1 at http://www.ontotext.com/owlim.</b>
+
+After get OWLIM-SE files, execute the procedure below:
+1. Extract OWLIM-SE files at your local computer;
+2. Copy the content of 'lib' and 'ext' directories (from OWLIM-SE) to activerdf-sesame/ext;
+3. Run rake install again.
+
+<em>Licence information: The OWLIM-SE LICENCE is granted free of charge. The LICENCEE is allowed to install and use the PRODUCTS for research and evaluation
+purposes only. For more details see http://www.ontotext.com/owlim-license-agreement.</em>
 
 == License
 ActiveRDF is distributed under the LGPL[http://www.gnu.org/licenses/lgpl.html] license.
