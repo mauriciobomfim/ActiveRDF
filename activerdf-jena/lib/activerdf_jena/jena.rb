@@ -32,7 +32,7 @@ module Jena
       av = "#{name}_available"
       (class << self ; self ; end).send(:bool_accessor, av.to_sym)
       begin
-        java.lang.Class.forName driver
+        import driver
         Jena::DB.send("#{av}=", true)
       rescue
         Jena::DB.send("#{av}=", false)

@@ -28,10 +28,10 @@ module NG4J
       av = "#{name}_available"
       (class << self ; self ; end).send(:bool_accessor, av.to_sym)
       begin
-        java.lang.Class.forName driver
-        Jena::DB.send("#{av}=", true)
+        import driver
+        NG4J::DB.send("#{av}=", true)
       rescue
-        Jena::DB.send("#{av}=", false)
+        NG4J::DB.send("#{av}=", false)
       end
     end
 
