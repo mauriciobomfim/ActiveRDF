@@ -171,7 +171,7 @@ module ActiveRDF
         when :jars
           require this_dir + '/../../../activerdf-yars/lib/activerdf_yars/jars2'
         when :jena
-          require this_dir + '/../../../activerdf-jena/lib/activerdf_jena/jena'
+          require this_dir + '/../../../activerdf-jena/lib/activerdf_jena/init'
         when :sesame
           require this_dir + '/../../../activerdf-sesame/lib/activerdf_sesame/sesame'
         else
