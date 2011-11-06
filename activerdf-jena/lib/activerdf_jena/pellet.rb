@@ -19,7 +19,7 @@ module Pellet
   end
 
   module Query
-    include_package('org.mindswap.pellet.query.jena')
+    include_package('org.mindswap.pellet.jena')
   end
 
 end
