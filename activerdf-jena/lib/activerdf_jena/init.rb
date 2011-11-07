@@ -20,6 +20,8 @@ pellet_dir = File.expand_path(File.join(File.dirname(File.expand_path(file)), ".
 
 Dir.foreach(java_dir) do |jar|
   $CLASSPATH << File.join(java_dir, jar) if jar =~ /.jar$/
+end
+Dir.foreach(pellet_dir) do |jar|
   $CLASSPATH << File.join(pellet_dir, jar) if jar =~ /.jar$/  
 end
 
