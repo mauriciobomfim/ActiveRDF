@@ -376,19 +376,19 @@ module ActiveRDF
         o = mod.getResource(object.uri)
       else
         #xlate to literal
-        if !object.kind_of? Literal
-          objlit = Literal.new object
+        if !object.kind_of? RDFS::Literal
+          objlit = RDFS::Literal.new object
         else
           objlit = object
         end
 
-        if objlit.type
-          type = Jena::Datatypes::TypeMapper.getInstance.getTypeByName(objlit.type.uri)
-          o = mod.createTypedLiteral(objlit.value, type)
+        if objlit.datatype
+          type = Jena::Datatypes::TypeMapper.getInstance.getTypeByName(objlit.datatype.uri)
+          o = mod.createTypedLiteral(objlit, type)
         elsif objlit.language
-          o = mod.createLiteral(objlit.value, objlit.language)
+          o = mod.createLiteral(objlit, objlit.language)
         else
-          o = mod.createTypedLiteral(objlit.value, nil)
+          o = mod.createTypedLiteral(objlit, nil)
         end
       end
       return o
@@ -487,10 +487,10 @@ module ActiveRDF
               res_row << thing.getString
             elsif thing.getLanguage == ""
               # datatyped literal
-              res_row << Literal.new(thing.getValue, RDFS::Resource.new(thing.getDatatypeURI))
+              res_row << RDFS::Literal.typed(thing.getValue, RDFS::Resource.new(thing.getDatatypeURI))
             elsif thing.getDatatypeURI.nil?
-              # language tagged literal
-              res_row << Literal.new(thing.getLexicalForm, "@" + thing.getLanguage)
+              # language tagged RDFS::Literal
+              res_row << RDFS::LocalizedString.new(thing.getLexicalForm, "@" + thing.getLanguage)
             else
               raise ActiveRdfError, "Jena Sparql returned a strange literal"
             end
